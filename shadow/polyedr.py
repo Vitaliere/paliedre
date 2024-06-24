@@ -151,10 +151,8 @@ class Polyedr:
                     # Создаем массив точек, которые находятся в окрестности и нет
                     if (R3(x, y, z).rz(alpha).ry(beta).rz(gamma)).ocruz():
                         self.ocr.append(1)
-                        print("yes")
                     else:
                         self.ocr.append(0)
-                        print("no")
                     # Сохраняем оригинальное место с гомотетией
                     self.origvertexes.append(R3(x, y, z))
                     # Сохраняем проекцию точки с гомотетией
@@ -166,8 +164,11 @@ class Polyedr:
                     size = int(buf.pop(0))
                     seredina = gran = False
                     # проверка находится ли середина грани в окрестности
-                    if (self.vertexes[int(buf[0]) - 1]
-                        .sered(self.vertexes[int(buf[2]) - 1])).ocruz():
+                    if (
+                        self.vertexes[int(buf[0]) - 1].sered(
+                            self.vertexes[int(buf[2]) - 1]
+                        )
+                    ).ocruz():
                         seredina = True
                     vertexes = []
                     for n in buf:
