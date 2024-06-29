@@ -59,7 +59,8 @@ class Edge:
                 return
 
         shade.intersect(
-            self.intersect_edge_with_normal(facet.vertexes[0], facet.h_normal())
+            self.intersect_edge_with_normal
+            (facet.vertexes[0], facet.h_normal())
         )
         if shade.is_degenerate():
             return
@@ -111,11 +112,14 @@ class Facet:
     # Вспомогательный метод
     def _vert(self, k):
         n = (self.vertexes[k] - self.vertexes[k - 1]).cross(Polyedr.V)
-        return n * (-1.0) if n.dot(self.vertexes[k - 1] - self.center()) < 0.0 else n
+        return n * (-1.0) if (n.dot(self.vertexes[k - 1] - self.center())
+                              < 0.0) else n
 
     # Центр грани
     def center(self):
-        return sum(self.vertexes, R3(0.0, 0.0, 0.0)) * (1.0 / len(self.vertexes))
+        return (sum(self.vertexes,
+                R3(0.0, 0.0, 0.0)) *
+                (1.0 / len(self.vertexes)))
 
 
 class Polyedr:
@@ -148,15 +152,17 @@ class Polyedr:
                 elif i < nv + 2:
                     # задание всех вершин полиэдра
                     x, y, z = (float(x) for x in line.split())
-                    # Создаем массив точек, которые находятся в окрестности и нет
-                    if (R3(x, y, z).rz(alpha).ry(beta).rz(gamma)).ocruz():
+                    # Создаем массив точек, которые находятся в окрестности
+                    if (R3(x, y, z).rz(alpha).ry(beta).
+                            rz(gamma)).ocruz():
                         self.ocr.append(1)
                     else:
                         self.ocr.append(0)
                     # Сохраняем оригинальное место с гомотетией
                     self.origvertexes.append(R3(x, y, z))
                     # Сохраняем проекцию точки с гомотетией
-                    self.vertexes.append(R3(x, y, z).rz(alpha).ry(beta).rz(gamma) * c)
+                    self.vertexes.append(R3(x, y, z).
+                                         rz(alpha).ry(beta).rz(gamma) * c)
                 else:
                     # вспомогательный массив
                     buf = line.split()

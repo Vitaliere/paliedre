@@ -55,13 +55,15 @@ class R3:
     # Середина отрезка заданного двумя точками
     def sered(self, other):
         return R3(
-            (self.x + other.x) / 2, (self.y + other.y) / 2, (self.z + other.z) / 2
+            (self.x + other.x) / 2, (self.y + other.y) / 2,
+            (self.z + other.z) / 2
         )
 
     # Длинна вектора, который задается двумя точками
     def dlina(self, other):
         return sqrt(
-            (self.x - other.x) ** 2 + (self.y - other.y) ** 2 + (self.z - other.z) ** 2
+            (self.x - other.x) ** 2 + (self.y - other.y)
+            ** 2 + (self.z - other.z) ** 2
         )
 
 

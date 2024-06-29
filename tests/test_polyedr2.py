@@ -16,9 +16,11 @@ class TestPolyedr(unittest.TestCase):
 -1	0	1
 4	1    2    3    4
 """
-        fake_file_path = 'data/holey_box.geom'
-        with patch('shadow.polyedr.open'.format(__name__),
-                   new=mock_open(read_data=fake_file_content)) as _file:
+        fake_file_path = "data/holey_box.geom"
+        with patch(
+            "shadow.polyedr.open".format(__name__),
+            new=mock_open(read_data=fake_file_content),
+        ) as _file:
             self.polyedr = Polyedr(fake_file_path)
             _file.assert_called_once_with(fake_file_path)
 
