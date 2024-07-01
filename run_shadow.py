@@ -14,7 +14,7 @@ try:
         Polyedr(f"data/{name}.geom").draw(tk)
         delta_time = time() - start_time
         print(f"Изображение полиэдра '{name}' заняло {delta_time} сек.")
-        summa = Polyedr(f"data/{name}.geom").summa()
+        summa = Polyedr(f"data/{name}.geom").sum
         print(f"Сумма: {summa}")
         input("Hit 'Return' to continue -> ")
 except (EOFError, KeyboardInterrupt):
